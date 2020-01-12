@@ -191,32 +191,108 @@
 
     </div>
 
-<!--Modals-->
 
-<!--js-->
-<script type="text/javascript">
-$(document).ready(function(){
-    $("#servySubmit").on("click", function(){
-        function newform(){
-            var formComplete = true;
-            $(".validate").each(function(){
-                if ($(this).val() === ""){
-                    isValid = false;
+    <!-- Modal -->
+    <!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Meet your new friend!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <h5 id="matchName"></h5>
+            <img id="matchPic" src="" alt="No Image" width="250px">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+    <div id="resultsModal" class="modal">
+        <div class="modal-content">
+            <h4>Meet your new Friend!</h4>
+            <h5 id="matchName"></h5>
+            <img id="matchPic" src="" alt="No Image" width="250px">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!--js-->
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#servySubmit").on("click", function () {
+                function verifyForm() {
+                    var formComplete = true;
+                    $(".validate").each(function () {
+                        if ($(this).val() === "") {
+                            isValid = false;
+                        }
+                    });
+
+                    $(".select").each(function () {
+                        if ($(this).val() === "") {
+                            isValid = false;
+                        }
+                    });
+
+                    return isValid;
+                }
+
+                if (verifyForm() == true) {
+                    var newFriend = {
+                        name: $("#name").val().trim(),
+                        profilePic: $("#photo").val().trim(),
+                        scores: [
+                            $("#q1").val(),
+                            $("#q2").val(),
+                            $("#q3").val(),
+                            $("#q4").val(),
+                            $("#q5").val(),
+                            $("#q6").val(),
+                            $("#q7").val(),
+                            $("#q8").val(),
+                            $("#q9").val(),
+                            $("#q10").val(),
+                        ]
+                    };
+
+                    var currentURL = window.location.origin;
+
+                    $.post(currentURL + "/api/friends", newFriend, function (data) {
+                        $("#matchName").text(data.name);
+                        $("#matchPic").attr("src", data.profilePic);
+                    });
+
+                    $("#resultsModal").modal();
+
+                    $("#name").val("");
+                    $("#photo").val("");
+                    $("#q1").val();
+                    $("#q2").val();
+                    $("#q3").val();
+                    $("#q4").val();
+                    $("#q5").val();
+                    $("#q6").val();
+                    $("#q7").val();
+                    $("#q8").val();
+                    $("#q9").val();
+                    $("#q10").val();
+                } else {
+                    alert("please be sure to answer all questions. Thank you.")
                 }
             });
-            $(".select").each(function(){
-                if ($(this).val() === ""){
-                    isValid = false;
-                }
-            });
+        });
 
-            return isValid;
-        }
-
-        
-    })
-})
-</script>
+    </script>
 </body>
 
 </html>
