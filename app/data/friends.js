@@ -1,7 +1,7 @@
-var friendAccounts =[
+var friendData =[
     {
         name: "Mario"
         Photo: ""
-        Scores:
+        Scores: []
     }
 ]
