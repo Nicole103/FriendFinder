@@ -1,8 +1,18 @@
 var friendData =[
     {
-        name: "Nicole Heersink",
-        Photo: "https://media.licdn.com/dms/image/C4E03AQG_3FUfBZLJNw/profile-displayphoto-shrink_200_200/0?e=1583366400&v=beta&t=0M3JuMEhfGOyQmJOXU_TSFsDSQK_ZQhkiSxjK8B9sKE",
-        Scores: ["2", "1", "3", "4", "5", "4", "3", "5", "2", "3"]
+        name: "Jim",
+        photo: "https://vignette.wikia.nocookie.net/theoffice/images/9/9a/Jim.jpg/revision/latest?cb=20170701084550",
+        scores: [2,1,3,4,5,4,3,5,2,3]
+    },
+    {
+        name: "Pam",
+        photo: "",
+        scores: ["2", "2", "3", "3", "5", "4", "3", "5", "2", "3"]
+    },
+    {
+        name: "Michael",
+        photo: "",
+        scores: ["1", "1", "1", "1","1","1","1","1","1","1"]
     }
 ]
 
