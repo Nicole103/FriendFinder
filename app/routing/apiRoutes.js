@@ -1,9 +1,9 @@
-var friendList = require('../data/friends.js');
+var friendData = require('../data/friends.js');
 
 module.exports = function(app){
   
   app.get('/api/friends', function(req,res){
-    res.json(friendList);
+    res.json(friendData);
   });
 
   app.post('/api/friends', function(req,res){
@@ -13,11 +13,11 @@ module.exports = function(app){
     var friendMatch = 0;
 
     
-    for(var i=0; i<friendList.length; i++){
+    for(var i=0; i<friendData.length; i++){
       var difference = 0;
       
       for(var j=0; j<newFriendScores.length; j++){
-        difference += (Math.abs(parseInt(friendList[i].scores[j]) - parseInt(newFriendScores[j])));
+        difference += (Math.abs(parseInt(friendData[i].scores[j]) - parseInt(newFriendScores[j])));
       }
 
       
@@ -32,10 +32,10 @@ module.exports = function(app){
     }
 
    
-    var newFriend = friendList[friendMatch];
+    var newFriend = friendData[friendMatch];
     res.json(newFriend);
 
    
-    friendList.push(req.body);
+    friendData.push(req.body);
   });
 };

@@ -1,4 +1,4 @@
-var friendData =[
+var friendList =[
     {
         name: "Jim",
         photo: "https://vignette.wikia.nocookie.net/theoffice/images/9/9a/Jim.jpg/revision/latest?cb=20170701084550",
@@ -16,4 +16,4 @@ var friendData =[
     }
 ];
 
-module.exports = friendData;
+module.exports = friendList;
