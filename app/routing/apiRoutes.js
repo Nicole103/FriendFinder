@@ -34,16 +34,15 @@ module.exports = function(app) {
         }
         
     }
-    if (scoreDiff<maxDiff){
+    if (scoreDiff < maxDiff){
       maxDiff = scoreDiff;
       matchName = friendData[i].name;
       matchPic = friendData[i].photo;
     }
 
-  
-  
-   
+     
     friendData.push(newFriend);
+    
     res.json({ matchName: matchName, matchPic: matchPic});
 
   });

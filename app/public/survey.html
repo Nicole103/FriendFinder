@@ -192,7 +192,9 @@
     <!--js-->
     <script type="text/javascript">
 
-        $("#submitButton").on("click", function () {
+        $("#submitButton").on("click", function (event) {
+            event.preventDefault();
+
             function validateForm() {
                 var isValid = true;
                 $(".form-control").each(function () {
@@ -205,6 +207,7 @@
             }
            
             if (validateForm() == true) {
+                
                 var newFriend = {
                     name: $("#name").val().trim(),
                     photo: $("#photo").val().trim(),
@@ -222,10 +225,10 @@
                     ]
                 };
 
-
                 var currentURL = window.location.origin;
+                console.log(currentURL);
 
-                $.post(currentURL + "/api/friends", newFriend, function (data) {
+                $.post(currentURL+"/api/friends", newFriend, function (data) {
                     $("#matchName").text(data.name);
                     $("#matchPic").attr("src", data.photo);
 
@@ -246,10 +249,10 @@
                 $("#q8").val("");
                 $("#q9").val("");
                 $("#q10").val("");
-                
+
             } else {
-                alert("Please be sure to answer all questions. Thank you.")
-            }
+                alert("Please be sure to answer all questions. Thank you.");
+            };
         });
 
     </script>
