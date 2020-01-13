@@ -1,50 +1,37 @@
-//required
-var friendData = require("../data/friends.js");
+var friendData = require('../data/friends.js');
 
-
-// ROUTING
-module.exports = function (app) {
-
-  // API GET Requests
-  app.get("/api/friends", function (req, res) {
+module.exports = function(app){
+  //a GET route that displays JSON of all possible friends
+  app.get('/api/friends', function(req,res){
     res.json(friendData);
-
   });
 
-  // API POST Requests  
-  app.post("/api/friends", function (req, res) {
+  app.post('/api/friends', function(req,res){
+    //grabs the new friend's scores to compare with friends in friendList array
+    var newFriendScores = req.body.scores;
+    var scoresArray = [];
+    var friendMatch = 0;
 
-    //collecting the information from the submitted survey
-    var newFriend = req.body;
-    var newFriendScores = newFriend.scores;
-
-    var matchName = " ";
-    var matchPic = " ";
-
-    var maxDiff = 51;
-
-    // loop through all friend sums to comapair scores
-    for (var i = 0; i < friendData.length; i++) {
-
-      var scoreDiff = 0;
-
-      for (var j = 0; j < newFriendScores.length; j++) {
-
-        scoreDiff += Math.abs(friendData[i].scores[j] - newFriendScores[j]);
+    //runs through all current friends in list
+    for(var i=0; i<friendList.length; i++){
+      var difference = 0;
+      //run through scores to compare friends
+      for(var j=0; j<newFriendScores.length; j++){
+        difference += (Math.abs(parseInt(friendData[i].scores[j]) - parseInt(newFriendScores[j])));
       }
 
-
-      if (scoreDiff < maxDiff) {
-        maxDiff = scoreDiff;
-        matchName = friendData[i].name;
-        matchPic = friendData[i].photo;
+      scoresArray.push(difference);
+    }
+  
+    for(var i=0; i<scoresArray.length; i++){
+      if(scoresArray[i] <= scoresArray[friendMatch]){
+        friendMatch = i;
       }
     }
-
-
-    friendData.push(newFriend);
-
-    res.json({ matchName: matchName, matchPic: matchPic });
-
+    
+    var newFriend = frienddata[friendMatch];
+    res.json(newFriend);
+    
+    friendData.push(req.body);
   });
 };
