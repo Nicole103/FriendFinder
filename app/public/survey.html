@@ -8,9 +8,9 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -205,9 +205,9 @@
 
                 return isValid;
             }
-           
+
             if (validateForm() == true) {
-                
+
                 var newFriend = {
                     name: $("#name").val().trim(),
                     photo: $("#photo").val().trim(),
@@ -224,32 +224,32 @@
                         $("#q10").val()
                     ]
                 };
-
+                console.log(newFriend);
                 var currentURL = window.location.origin;
                 console.log(currentURL);
 
-                $.post(currentURL+"/api/friends", newFriend, function (data) {
-                    $("#matchName").text(data.name);
-                    $("#matchPic").attr("src", data.photo);
+                $.post("/api/friends", newFriend,
+                    function (data) {
+                        $("#matchName").text(data.name);
+                        $("#matchPic").attr("src", data.photo);
 
-                    //modal show best match
-                    $("#resultsModal").modal("toggle");
-                })
-               
-                //clear survey after button clicked
-                $("#name").val("");
-                $("#photo").val("");
-                $("#q1").val("");
-                $("#q2").val("");
-                $("#q3").val("");
-                $("#q4").val("");
-                $("#q5").val("");
-                $("#q6").val("");
-                $("#q7").val("");
-                $("#q8").val("");
-                $("#q9").val("");
-                $("#q10").val("");
+                        //modal show best match
+                        $("#resultsModal").modal("toggle");
 
+                        //clear survey after button clicked
+                        $("#name").val("");
+                        $("#photo").val("");
+                        $("#q1").val("");
+                        $("#q2").val("");
+                        $("#q3").val("");
+                        $("#q4").val("");
+                        $("#q5").val("");
+                        $("#q6").val("");
+                        $("#q7").val("");
+                        $("#q8").val("");
+                        $("#q9").val("");
+                        $("#q10").val("");
+                    });
             } else {
                 alert("Please be sure to answer all questions. Thank you.");
             };
