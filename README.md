@@ -24,5 +24,5 @@ From the home screen a user can choose to take the survey and find a new friend.
 
 
 ## Links to application:
- Heroku:
+ Heroku: https://obscure-reef-70456.herokuapp.com/
 
